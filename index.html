@@ -92,34 +92,92 @@
        <div class="col-lg-6 col-md-4 col-sm-2">
 
        </div>
-       <div class="col-lg-6 col-md-8 col-sm-10 my-auto bg-warning py-5 rounded-pill pl-5">     
-                <h1>We are here to help.</h1>
-                <h6 >Visit our blog post for informative articles about health!</h6>
+       <div class="col-lg-6 col-md-8 col-sm-10 my-auto p-5 text-center" style="display:block;">     
+               
+                   <h1 class="">We are here to help.</h1>
+                <h6 class="">Visit our blog post for informative articles about health!</h6>
                 <div class="blogpost">
                     <a href="#" class="text-dark btn rounded" type="button" style="background-color: burlywood;">Blog Post <i class="fas fa-book-reader"></i></a>
-                </div>       
+                
+            </div>
+                     
        </div>      
         </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="text-center p-5 bg-warning">
-                        <h1 class="font-weight-bolder text-dark">Healthcare, but accessible.</h1>
+                        <h1 class="font-weight-bolder text-dark">Accessible Healthcare.</h1>
                 </div>
                     
             </div>
         </div>
         <div class="bg2 row">
             <div class="col-lg-6 col-sm-12" id="canvas-holder">
-                <h3 class="m-5 font-wight-bold">Some stats about babies in pangil:</h3>
+                <h3 class="m-5 font-weight-bolder">Some stats about babies in pangil:</h3>
                 <canvas id="chart-area">  
 
                 </canvas>
+                <p class="m-5 p">Babies in Pangil is 50% more likely to survive than babies in Pakil. Facts people.</p>
             </div>
             <div class="col-lg-6 col-sm-12">
-               <div class="jumbotron">
-                   <h3>Services offered in Pangil Health Center</h3>
-
-            </div>
+                    <h3 class="m-5 font-weight-bolder">Blog Post:</h3>
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                    <div>
+                                        
+                                            <div class="card" style="width: 100%; background-color:rgba(0, 0, 0, .3);">
+                                                 <img class="card-img-top" src="./images/bg2.jpg" alt="Card image cap">
+                                                 <div class="card-body">
+                                                   <h5 class="card-title">Hotdog?</h5>
+                                                   <p class="card-text">Learn more about hotdogs.</p>
+                                                   <a href="#" class="btn btn-warning">Read</a>
+                                                 </div>
+                                               </div>
+                                     </div>
+                              </div>
+                              <div class="carousel-item">
+                                    <div>
+                                           
+                                            <div class="card" style="width: 100%; background-color:rgba(0, 0, 0, .3);">
+                                                 <img class="card-img-top" src="./images/bg2.jpg" alt="Card image cap">
+                                                 <div class="card-body">
+                                                   <h5 class="card-title">Hotdog?</h5>
+                                                   <p class="card-text">Learn more about hotdogs.</p>
+                                                   <a href="#" class="btn btn-warning">Read</a>
+                                                 </div>
+                                               </div>
+                                     </div>
+                              </div>
+                              <div class="carousel-item">
+                                    <div>
+                                           
+                                            <div class="card" style="width: 100%; background-color:rgba(0, 0, 0, .3);">
+                                                 <img class="card-img-top" src="./images/bg2.jpg" alt="Card image cap">
+                                                 <div class="card-body">
+                                                   <h5 class="card-title">Hotdog?</h5>
+                                                   <p class="card-text">Learn more about hotdogs.</p>
+                                                   <a href="#" class="btn btn-warning">Read</a>
+                                                 </div>
+                                               </div>
+                                     </div>
+                              </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </div>
+              
                    
                 
             </div>
@@ -135,25 +193,17 @@
 var myChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Red', 'Blue'],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: '# of Babies',
+            data: [12, 19],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
                 'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1
         }]
