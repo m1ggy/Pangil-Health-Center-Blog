@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color:rgb(47, 87, 47);">
+        <a class="navbar-brand text-white"><i class="fas fa-hospital-symbol"></i>
+
+          Pangil Health Center</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbar1">
+       
+       <ul class="navbar-nav ml-auto mr-5">
+            <li class="nav-item">
+                    <a href="/" class="nav-link text-white">Home</a>
+                </li>
+           <li class="nav-item">
+               <a href="/blog" class="nav-link text-white">Blog Post</a>
+           </li>
+           <li class="nav-item">
+                <a href="#" class="nav-link text-white">Contact Us</a>
+            </li>
+       </ul>
+    </div>
+   </nav>
+
+   <main>
+       <div class="jumbotron text-center mb-0" style="background-color: rgb(47, 87, 47);">
+         <h1 class="font-weight-bold text-light" style="font-family: 'Times New Roman', Times, serif;font-size: 100px;">Health Blog</h1>
+         <p class="text-light font-italic" style="font-size: 20px;">Informative posts for your daily health info needs. no fuss.</p>
+            
+               
+       </div>
+
+       <div class="jumbotron text-center mt-0 mb-0" style="background-color: rgb(158,182,158);">
+            <div id="latestPost" >
+                    <h3 class="font-weight-bold" style="font-family: 'alegreya', Times, serif;font-size: 50px;">Latest post</h3>
+                    <h4 class="font-italic font-weight-bold" style="font-family: 'alegreya', Times, serif;font-size: 60px;"><%=latestTitle%></h4>
+                    <h5 class="" style="font-size: 30px;font-family: roboto;letter-spacing: -1.5px;"><%=name%></h5>
+                    <a href="/blog/post/<%=postIDLink%>" class="button btn btn-primary">Read</a>
+                </div>
+            </div>
+           
+            <div class="jumbotron allpost text-center mt-0 mb-0">
+                    <h3 class="font-weight-bold m-5" style="font-family: 'alegreya', Times, serif;font-size: 50px;">All posts</h3>
+                        
+            </div>
+            <div class="table text-center mt-0 row">
+
+            </div>
+       
+   </main>
+
+   <script>
+       const table = document.querySelector('.table')
+       
+       const articles = <%-JSON.stringify(articles)%>
+
+       if(articles.length>0){
+         let i = 0;   
+          while(articles.length>i){
+            const h1 = document.createElement('h1')
+            const h3 = document.createElement('h3')     
+            const jumbotron = document.createElement('div')
+            const button = document.createElement('a')
+            jumbotron.className = 'col-lg-4 col-md-6'
+            h1.style.fontFamily ="alegreya"
+            h1.className ='font-italic mt-5'
+            button.className ='btn btn-success mt-3 mb-2'
+            button.innerHTML ="Read"
+            h1.style.fontSize = '60px';
+            h3.style.margin ="10px"
+            h3.style.fontFamily ='Roboto'
+            
+              title = document.createTextNode(articles[i].title)
+              author = document.createTextNode(articles[i].author.toLowerCase())
+            button.href = `blog/post/${i+1}`
+              h1.appendChild(title)
+              jumbotron.appendChild(h1)
+              h3.appendChild(author)
+              jumbotron.appendChild(h3)
+              jumbotron.appendChild(button)
+              table.appendChild(jumbotron)
+              i++
+            }  
+        
+       }
+
+   </script>
+

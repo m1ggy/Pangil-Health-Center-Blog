@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(9, 61, 32);">
+        <a class="navbar-brand text-white"><i class="fas fa-hospital-symbol"></i>
+
+          Pangil Health Center</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbar1">
+       
+       <ul class="navbar-nav ml-auto mr-5">
+            <li class="nav-item">
+                    <a href="/" class="nav-link text-white">Home</a>
+                </li>
+           <li class="nav-item">
+               <a href="/blog" class="nav-link text-white">Blog Post</a>
+           </li>
+           <li class="nav-item">
+                <a href="#" class="nav-link text-white">Contact Us</a>
+            </li>
+       </ul>
+    </div>
+   </nav>
+
+<div class="container blogEntry">
+    <h4 style="font-size: 80px;font-family: 'Alegreya',serif;" class="text-center"><%=title%></h4>
+    <h6 style="font-size: 30px; font-family: 'Crimson';" class="text-center"><%=author%></h6><br><br>
+    <div class="body text-justify m-auto">
+        <p><%-main%></p>   
+    </div>
+    <br><br>
+    <h3>Comments</h6>
+  
+    <div class="container comments bg-light p-3">
+        <div class="commentBox">
+               
+        </div >
+        <h3>Post a comment:</h3>
+        <form action="<%=postID%>" method="POST" class="mt-5">
+        <label for="name">Name</label>
+        <input type="text" name="author" id="author" required><br>
+        <label for="commentbody">Comment</label><br>
+        <textarea name="content" cols="40" rows="5" required id="content"></textarea><br>
+        <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const commentBox = document.querySelector('.commentBox')
+    const comments = <%-JSON.stringify(comments)%>
+    if(comments.length<=0){
+            const h1 = document.createElement('h1')
+            const h3 = document.createElement('h3')  
+            h3.style.color = "crimson"   
+            h3.className ="m-5"
+            const jumbotron = document.createElement('div')
+            const p = document.createTextNode('No comments :(')
+            h3.appendChild(p)
+            commentBox.appendChild(h3)
+    }
+    else{
+        var i = 0
+        while(comments.length>i){
+            const h5 = document.createElement('h5')
+            const p = document.createElement('p')     
+            const dateNode = document.createElement('p')
+            const jumbotron = document.createElement('div')
+            const author = document.createTextNode(comments[i].author+" says:")
+            const content = document.createTextNode(comments[i].content)
+            const date = document.createTextNode("Date posted: "+comments[i].date)
+
+            h5.appendChild(author)
+            jumbotron.appendChild(h5)
+            p.appendChild(content)
+            jumbotron.appendChild(p)
+            dateNode.appendChild(date)
+            jumbotron.appendChild(dateNode)
+            commentBox.appendChild(jumbotron)
+            i++
+
+        }
+            
+
+    }
+</script>
