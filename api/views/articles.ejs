@@ -19,9 +19,18 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="/dashboard/articles">Articles</a>
+                    <div class="dropdown">
+                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Articles
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/dashboard/viewarticles">View Articles</a>
+                        <a class="dropdown-item" href="/dashboard/articles">Add New</a>
+                        
+                      </div>
+                    </div>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item m-2">
                       <a href="/dashboard/charts">Charts</a>
                     </li>
                   
@@ -36,7 +45,7 @@
                         <label for="author">Author</label><br>
                         <input type="text" name="author" id="author"><br>
                         <label for="Content">Content</label><br>
-                        <textarea name="content" id="content" cols="30" rows="10"></textarea><br>
+                        <textarea name="content" id="content" cols="70 " rows="20"></textarea><br>
                         <p>note: You can use basic HTML syntax for formatting e.g &lt;br&gt;</p>
                         <button type="submit" class="button btn-success btn">Submit Article</button>
             

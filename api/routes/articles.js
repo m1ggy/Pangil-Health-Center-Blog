@@ -24,13 +24,13 @@ router.get('/', (req, res)=>{
 })
 router.get('/post/:id',(req,res)=>{
     Comment.find({postID:req.params.id},(err,comment)=>{ 
-    Article.find((err,articles)=>{
+    Article.find({postID:req.params.id},(err,articles)=>{
         if(err) console.log(err)
         else{
             res.render('blogentry',{
-                title:articles[req.params.id-1].title.toLowerCase(),
-                author:articles[req.params.id-1].author.toLowerCase(),
-                main:articles[req.params.id-1].content,
+                title:articles[0].title.toLowerCase(),
+                author:articles[0].author.toLowerCase(),
+                main:articles[0].content,
                 postID:req.params.id,
                 comments:comment
             })
@@ -50,7 +50,7 @@ router.post('/post/:id', (req,res)=>{
     })
     try {
         newComment.save()
-        res.redirect(`${req.params.id}`)
+        res.redirect(req.get('referer'));
     } catch (error) {
         
     }

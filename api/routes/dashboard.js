@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Article = require('../models/article')
 const Chart = require('../models/Chart')
-
+const Comment = require('../models/Comments')
 router.get('/', checkAuthenticated,(req,res)=>{
     Article.find((err,articles)=>{
         Chart.find((err,chart)=>{
@@ -30,7 +30,12 @@ router.get('/articles', (req,res)=>{
 
 router.post('/articles', async (req,res)=>{
    await Article.find( async(err,articles)=>{
-        var articleID = articles.length+1 
+       if(articles.length==0){
+        var articleID = 1
+       }else{
+        var articleID = articles[articles.length-1].postID+1 
+       }
+        
   
     const article = new Article({
         title: req.body.title,
@@ -68,6 +73,43 @@ router.post('/charts', async(req,res)=>{
        } catch (error) {
            res.send('error please go back to previous page.')
        }
+})
+
+router.get('/viewarticles', (req,res)=>{
+    Article.find((err,articles)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.render('articlescrud',{articles:articles})
+        }
+
+    })
+})
+
+router.get('/viewarticles/:id', (req,res) =>{
+    console.log(req.params.id)
+    Article.find({postID:req.params.id},(err,articles)=>{
+        console.log(articles)
+        res.render('editarticle',{postID:req.params.id,articles:articles})
+    })
+})
+
+router.post('/viewarticles/:id', async(req,res)=>{
+
+     await Article.findOneAndUpdate({postID:req.params.id}, {title:req.body.title,author:req.body.author,content:req.body.content},{upsert:true})    
+     res.redirect('/dashboard/viewarticles')
+    })
+
+router.post('/viewarticles/:id/delete', async (req,res)=>{
+    Article.deleteOne({postID:req.params.id},()=>{
+        Comment.deleteMany({postID:req.params.id},() =>{
+
+        })
+        
+            res.redirect('/dashboard/viewarticles')
+        
+    })
+
 })
 
 function checkAuthenticated(req, res, next) {

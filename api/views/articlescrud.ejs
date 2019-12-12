@@ -1,0 +1,92 @@
+<nav class="navbar navbar-light sticky-top bg-light flex-md-nowrap p-2">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Pangil Health Center Blog</a>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link btn p-1 bg-danger text-light" href="/">Sign out</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+        
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="/dashboard">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home" href="/dashboard"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                Dashboard <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Articles
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="/dashboard/viewarticles">View Articles</a>
+                  <a class="dropdown-item" href="/dashboard/articles">Add New</a>
+                  
+                </div>
+              </div>
+            </li>
+            <li class="nav-item m-2">
+                <a href="/dashboard/charts">Charts</a>
+              </li>
+            
+          </ul>
+      </nav>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <form class="form-group" action="/viewarticle" method="POST">
+                <table class="table">
+                    <thead> 
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Author</th>                     
+                        </tr>
+                    </thead>
+                   <tbody id="bodyArticles">
+
+                   </tbody>
+                    
+                </table>
+            </form>
+                 
+        </main>
+</div>
+
+</div>
+    <script>
+        const bodyArticles = document.querySelector('#bodyArticles')
+    const articles = <%- JSON.stringify(articles) %>
+    
+
+    articles.forEach((element) => {
+        const td = document.createElement('td')
+        const td1 = document.createElement('td')
+        const td2 = document.createElement('td')
+        const td3 = document.createElement('td')
+        const tr = document.createElement('tr')
+        const table = document.querySelector('.table')
+        const button = document.createElement('a')
+        button.className = 'btn btn-primary text-light'
+        button.textContent = 'Edit'
+        button.href = `/dashboard/viewarticles/${element.postID}`
+        const postID = document.createTextNode(element.postID)
+        const title = document.createTextNode(element.title)
+        const author = document.createTextNode(element.author)
+
+        td.appendChild(postID)
+        tr.appendChild(td)
+        td1.appendChild(title)
+        tr.appendChild(td1)
+        td2.appendChild(author)
+        tr.appendChild(td2)
+        td3.appendChild(button)
+        tr.appendChild(td3)
+        table.appendChild(tr)        
+    });
+
+    </script>
+  
